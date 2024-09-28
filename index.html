@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Twitter Search</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        h1 {
+            color: #1da1f2;
+            text-align: center;
+        }
+        form {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px 0 0 4px;
+            width: 300px;
+        }
+        input[type="submit"] {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #1da1f2;
+            color: white;
+            border: none;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+        }
+        #results {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            padding: 20px;
+            white-space: pre-wrap;
+            font-family: monospace;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Twitter Search</h1>
+    <form id="searchForm">
+        <input type="text" name="term" placeholder="Enter search term" required>
+        <input type="submit" value="Search">
+    </form>
+    <div id="results"></div>
+    
+    <script>
+        document.getElementById('searchForm').onsubmit = async (e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const term = formData.get('term');
+            
+            const response = await fetch('/search', {
+                method: 'POST',
+                body: new URLSearchParams({ term }),
+            });
+            const data = await response.json();
+            
+            // Join the result array with newline characters
+            const formattedResult = data.result.join('\n');
+            
+            document.getElementById('results').textContent = formattedResult;
+        };
+    </script>
+</body>
+</html>
