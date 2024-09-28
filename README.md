@@ -41,16 +41,3 @@ This project implements a Flask-based web application that ingests tweet data fr
 - Pandas
 - HTML/JavaScript
 
-## Future Improvements
-
-- Implement more advanced privacy protections
-- Optimize data ingestion for larger datasets
-- Add more detailed analytics and visualizations
-
-## Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-## License
-
-This project is open source and available under the MIT License.
